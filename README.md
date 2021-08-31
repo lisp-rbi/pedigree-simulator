@@ -12,8 +12,11 @@ Execution:
 Input parameters:
 
 initial_population (int): Size of the founder population. For 1 it creates a tree, for >1 it creates a forest
+
 final_population (int): Size of the final population. The program stops upon reaching the desired population size without finishing the initiated generation.
+
 male_ratio (float): Fraction of the initial population that is male. At this point please keep this number at 0.0, as we currently only follow the maternal lines.
+
 average_offspring (int): Average number of offspring that an individual has in a given generation.
 
 The program starts with an initial population of the desired size and at each generation it creates new members. Each member has an assigned ID, maternal and paternal IDs (for now paternal IDs are empty), which generation it belongs to, sex and number of offspring. At the beginning of a new generation, the program randomly assigns a new number of offspring to each existing member according to the normal distribution with mean = average_offspring and sigma = 1.0 or 2.0. Number of offspring for each member can be between and including 0 and 6, so please choose average_offspring whithin that range. 
