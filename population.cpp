@@ -92,7 +92,7 @@ void Population::breedPopulation() {
 	    std::vector<Member> tmp_members;
         std::cerr << "Creating new members..." << std::endl;
         for (int i = 0; i < members.size(); i++) {
-            if (members[i].generation < generation - 2) continue;
+            if (members[i].generation < generation - 1) continue;
 
 	        for (int j = 1; j < members[i].number_of_offspring+1; j++) {
                 Member new_member = makeMember(members.size()+tmp_members.size()+1,generation,2,members[i].ID);
