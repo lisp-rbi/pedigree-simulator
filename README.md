@@ -1,15 +1,15 @@
 # pedigree-simulator
-##A program to create a synthetic pedigree
+## A program to create a synthetic pedigree
 
-###Compiling the program:
+### Compiling the program:
 
 g++ pedigreesim.cpp population.cpp -o pedigreesim
 
-###Execution:
+### Execution:
 
 ./pedigreesim --male-pop=\<int\> --female-pop=\<int\> --final-pop=\<int\> --male-ratio=\<float\> --average-partners=\<int\> --average-offspring=\<int\> > output.csv
 
-###Input parameters:
+### Input parameters:
 
 --male-pop (int): Size of the male founder population. Default: 5.
 
@@ -23,7 +23,7 @@ g++ pedigreesim.cpp population.cpp -o pedigreesim
 
 --average-offspring (int): Average number of offspring that females will have during the simulation. Default: 4.
 
-###Comments:
+### Comments:
 
 The program starts with an initial population of the desired size and composition and at each generation it creates new members. Each member has an assigned ID, maternal and paternal IDs, which generation it belongs to, sex, number of partners (males) and number of offspring(females). At the beginning of a new generation, the program randomly assigns a new number of partners to each existing male and a number of offspring to each existing female according to the normal distribution with mean = --average-partners/--average-offspring and sigma = 2.0. Number of partners/offspring for each member can be between and including 0 and 6, so please choose --average-partners and --average-offspring whithin that range. 
 Thereafter the program adds new members to the population accordingly. Each female can generate offspring in 2 consecutive subsequent generations, afterwards it stops. For males there is no such constraint. The execution ends when --final-pop is reached.
