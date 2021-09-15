@@ -4,14 +4,15 @@
 class Population {
 
     private:
-        int population_size;
+        int male_pop;
+        int female_pop;
         int final_population;
         float male_ratio;
         int avrg_number_of_partners;
         int avrg_number_of_offspring;
 
     public:
-        Population(int x, int y, float z, int w, int q);
+        Population(int x, int y, int z, float w, int q, int p);
 
         struct Member {
             std::string ID;

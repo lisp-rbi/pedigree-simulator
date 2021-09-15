@@ -41,15 +41,17 @@ void shuffle_vector(std::vector<T> *members)
     shuffle(members->begin(), members->end(), std::default_random_engine(seed));
 }
 
-Population::Population(int x, int y, float z, int w, int q)
+Population::Population(int x, int y, int z, float w, int q, int p)
 {
     std::cerr << "Calling class constructor...\n";
-    population_size = x;
-    final_population = y;
-    male_ratio = z;
-    avrg_number_of_partners = w;
-    avrg_number_of_offspring = q;
-    std::cerr << "population_size = " << population_size << "\n";
+    male_pop = x;
+    female_pop = y;
+    final_population = z;
+    male_ratio = w;
+    avrg_number_of_partners = q;
+    avrg_number_of_offspring = p;
+    std::cerr << "male_pop = " << male_pop << "\n";
+    std::cerr << "female_pop = " << female_pop << "\n";
     std::cerr << "final population = " << final_population << "\n";
     std::cerr << "male_ratio = " << male_ratio << "\n";
     std::cerr << "avrg_number_of_partners = " << avrg_number_of_partners << "\n";
@@ -79,15 +81,13 @@ Population::Member Population::makeMember(int id_number, int generation, int sex
 }
 
 int Population::initiatePopulation() {
-    std::cerr << "Creating initial population, size: " << population_size << "\n";
-    for (int i = 0; i < population_size; i++) {
-
-        if (i < int(population_size*male_ratio))
-            males.push_back(makeMember(i + 1, 0, 1, "", ""));
-        else
-            females.push_back(makeMember(i + 1, 0, 2, "", ""));
-
-    }
+    std::cerr << "Creating initial population, size: \n";
+    std::cerr << "\tmales: " << male_pop << "\n";
+    std::cerr << "\tfemales: " << female_pop << "\n";
+    for (int i = 0; i < male_pop; i++)
+        males.push_back(makeMember(i + 1, 0, 1, "", ""));
+    for (int i = 0; i < female_pop; i++)
+        females.push_back(makeMember(i + 1, 0, 2, "", ""));
     std::cerr << "Size of created male population: " << males.size() << "\n";
     std::cerr << "Size of created female population: " << females.size() << "\n";
     return 0;
@@ -205,14 +205,14 @@ void Population::printPopulation() {
             std::cout << i + 1 << "," << males[indices[i]].ID;
             std::cout << "," << males[indices[i]].father;
             std::cout << "," << males[indices[i]].mother;
-            std::cout << "," << 2010 + males[indices[i]].generation;
+            std::cout << "," << 2000 + males[indices[i]].generation;
             std::cout << "," << males[indices[i]].sex << "\n";
         }
         else {
             std::cout << i + 1 << "," << females[indices[i]-males.size()].ID;
             std::cout << "," << females[indices[i]-males.size()].father;
             std::cout << "," << females[indices[i]-males.size()].mother;
-            std::cout << "," << 2010 + females[indices[i]-males.size()].generation;
+            std::cout << "," << 2000 + females[indices[i]-males.size()].generation;
             std::cout << "," << females[indices[i]-males.size()].sex << "\n";
         }
         
@@ -220,7 +220,8 @@ void Population::printPopulation() {
 }
 
 Population::~Population() {
-    population_size = 0;
+    male_pop = 0;
+    female_pop = 0;
     final_population = 0;
     male_ratio = 0.0;
     males.clear();
