@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
     rc = argumentParser(argc,argv,&male_pop,&female_pop,&final_population,&male_ratio,&anp,&ano);
     
     assert(male_pop + female_pop < final_population);
-    assert(male_ratio < 1.0);
+    assert(male_ratio >= 0.0 && male_ratio <= 1.0);
     assert(ano >= 0 && ano < 7);
     assert(anp >= 0 && anp < 6);
     Population newpop(male_pop,female_pop,final_population,male_ratio,anp,ano);
