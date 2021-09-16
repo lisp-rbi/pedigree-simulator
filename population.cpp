@@ -22,7 +22,8 @@ std::vector<int> generate_normal_random(int mean, int size) {
     const int max_value = 6;
     std::vector<int> values;
 
-    std::default_random_engine generator;
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine generator(seed);
     std::normal_distribution<double> distribution(fmean, sigma);
 
     while (values.size() < size) {
@@ -86,7 +87,7 @@ int Population::initiatePopulation() {
     std::cerr << "\tfemales: " << female_pop << "\n";
     for (int i = 0; i < male_pop; i++)
         males.push_back(makeMember(i + 1, 0, 1, "", ""));
-    for (int i = 0; i < female_pop; i++)
+    for (int i = male_pop; i < male_pop+female_pop; i++)
         females.push_back(makeMember(i + 1, 0, 2, "", ""));
     std::cerr << "Size of created male population: " << males.size() << "\n";
     std::cerr << "Size of created female population: " << females.size() << "\n";
@@ -166,7 +167,10 @@ int Population::breedPopulation() {
             begin_female += j;
         }
         // if there are no new members created leave the function
-        if (tmp_members.size() == 0) return 1;
+        if (tmp_members.size() == 0) {
+            std::cerr << "No new members created in this generation.\nStopping the simulation...\n";
+            return 1;
+        }
         std::cerr << "Adding new " << tmp_members.size() << " created members to the initial population...\n";
         // add newly created members to the main population according to their sex
         // if the desired population size is reached, leave the loop
