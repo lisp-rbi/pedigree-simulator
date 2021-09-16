@@ -153,7 +153,8 @@ int Population::breedPopulation() {
                 for (int k = 1; k < females[begin_female+j].number_of_offspring+1; k++) {
                     int sex;
                     // first we create new males according to male_ratio
-                    if (k < int(ceil(females[begin_female+j].number_of_offspring * male_ratio))) sex = 1;
+                    if (k <= int(floor(females[begin_female + j].number_of_offspring * male_ratio))) sex = 1;
+                    // then we create females
                     else sex = 2;
                     Member new_member = makeMember(males.size()+females.size()+tmp_members.size()+1,generation,sex,males[i].ID,females[begin_female+j].ID);
                     // add new members to the temporary vector
