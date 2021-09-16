@@ -14,8 +14,8 @@ void printHelp() {
     std::cerr << "FLAGS:\n\n\t-h, --help:\t Print this help and exit.\n\n";
     std::cerr << "OPTIONS:\n\n\t--male-pop=<int>\t\tSize of the founder male population. [default: 5]\n\n";
     std::cerr << "\t--female-pop=<int>\t\tSize of the founder female population. [default: 5]\n\n";
-    std::cerr << "\t--final-pop=<int>\t\tSize of the final population. [default: 10]\n\n";
-    std::cerr << "\t--male-ratio=<float>\t\tFraction of the male population generated during the simulation. [default: 100]\n\n";
+    std::cerr << "\t--final-pop=<int>\t\tSize of the final population. [default: 100]\n\n";
+    std::cerr << "\t--male-ratio=<float>\t\tFraction of the male population generated during the simulation. [default: 0.5]\n\n";
     std::cerr << "\t--average-partners=<int>\tAverage number of partners males will have during the simulation. [default: 3]\n\n";
     std::cerr << "\t--average-offspring=<int>\tAverage number of offspring females will have during the simulation. [default: 4]\n\n";
     exit(0);
