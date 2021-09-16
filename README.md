@@ -7,7 +7,7 @@
 
 ### Execution:
 
-`./pedigreesim --male-pop=\<int\> --female-pop=\<int\> --final-pop=\<int\> --male-ratio=\<float\> --average-partners=\<int\> --average-offspring=\<int\> > output.csv`
+`./pedigreesim --male-pop=<int> --female-pop=<int> --final-pop=<int> --male-ratio=<float> --average-partners=<int> --average-offspring=<int> > output.csv`
 
 For help, execute: `./pedigreesim --help` or `./pedigreesim -h`
 
